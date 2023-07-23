@@ -59,6 +59,11 @@ void swap(listint_t *node1, listint_t *node2)
 		node1->next = node2->next;
 		node2->prev = node1->prev;
 	}
+	else
+	{
+		node1->next = NULL;
+		node2->prev = NULL;
+	}
 	node1->prev = node2;
 	node2->next = node1;
 }
