@@ -40,12 +40,12 @@ void swap(listint_t *node1, listint_t *node2)
 	/*edge cases 1- node1 is the head*/
 	if (node1->prev == NULL && node2->next != NULL)
 	{
-		node2 ->next->prev = node1;
+		node2->next->prev = node1;
 		node1->next = node2->next;
 		node2->prev = NULL;
 	}
 	/*edge case 2- node2 is the tail*/
-	else if(node2->next == NULL && node1->prev != NULL)
+	else if (node2->next == NULL && node1->prev != NULL)
 	{
 		node1->prev->next = node2;
 		node2->prev = node1->prev;
