@@ -11,7 +11,11 @@ void cocktail_sort_list(listint_t **list)
 	int swap = 1;
 	listint_t *head, *itr_node;
 
+<<<<<<< HEAD
 	if (*list == NULL || (*list)->next == NULL)
+=======
+	if (list == NULL || *list == NULL)
+>>>>>>> ba732b93bf4c09780d05f20e934d51b9b312a010
 		return;
 
 	head = *list;
