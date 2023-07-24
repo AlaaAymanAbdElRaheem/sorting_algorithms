@@ -19,24 +19,29 @@ void swap_arr(int *a, int *b)
  * @size: size of array
  * Return: index of the pivot
 */
-int partition(int *array, int low, int high, size_t size)
+int partition(int *array, size_t low, size_t high, size_t size)
 {
-	int pivot, i, j;
+	int pivot;
+	size_t i, j;
 
 	pivot = array[high];
 	/*keep track of the curr pos of the pivot with i in the middle*/
-	i = low - 1;
+	i = (low != 0) ? low - 1 : low;
 	for (j = low; j < high; j++)
 	{
 		if (pivot > array[j])
 		{
 			i++;
-			swap_arr(&array[j], &array[i]);
-			print_array(array, size);
+			if (array[i] != array[j])
+			{
+				swap_arr(&array[j], &array[i]);
+				print_array(array, size);
+			}
 		}
 
 	}
 	swap_arr(&array[high], &array[i + 1]);
+	print_array(array, size);
 	return (i + 1);
 }
 /**
@@ -46,7 +51,7 @@ int partition(int *array, int low, int high, size_t size)
  * @high: end of the partition
  * @size: size of array
 */
-void sort(int *array, int low, int high, size_t size)
+void sort(int *array, size_t low, size_t high, size_t size)
 {
 	int pivot;
 
@@ -65,5 +70,8 @@ void sort(int *array, int low, int high, size_t size)
 */
 void quick_sort(int *array, size_t size)
 {
-	sort(array, 0, (int)size - 1, size);
+	if (!array || size < 2)
+		return;
+
+	sort(array, 0, size - 1, size);
 }
