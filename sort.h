@@ -25,6 +25,7 @@ void swap_prev(listint_t **head, listint_t *itr_node);
 void swap(listint_t *Node1, listint_t *Node2);
 void bubble_sort(int *array, size_t size);
 void insertion_sort_list(listint_t **list);
+void quick_sort(int *array, size_t size);
 void selection_sort(int *array, size_t size);
 void cocktail_sort_list(listint_t **list);
 
