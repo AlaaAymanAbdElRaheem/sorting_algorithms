@@ -20,6 +20,7 @@ void swap_arr(int *a, int *b)
 void shell_sort(int *array, size_t size)
 {
 	int gap = 1, i, j;
+
 	if (array == NULL || size < 2)
 		return;
 
