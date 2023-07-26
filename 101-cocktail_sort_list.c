@@ -1,5 +1,5 @@
 #include "sort.h"
- 
+
 /**
  * cocktail_sort_list - sorts a doubly linked list of integers
  * in ascending order using the Cocktail shaker sort algorithm
@@ -16,7 +16,6 @@ void cocktail_sort_list(listint_t **list)
 
 	head = *list;
 	itr_node = *list;
-
 	while (swapped)
 	{
 		swapped = 0;
@@ -24,8 +23,8 @@ void cocktail_sort_list(listint_t **list)
 		{
 			if (itr_node->n > itr_node->next->n)
 			{
-			  temp = itr_node->next;
-			  swap(itr_node, temp);
+				temp = itr_node->next;
+				swapping(&head, itr_node, temp);
 				swapped = 1;
 				print_list(head);
 				continue;
@@ -39,8 +38,8 @@ void cocktail_sort_list(listint_t **list)
 		{
 			if (itr_node->n < itr_node->prev->n)
 			{
-			  temp = itr_node->prev;
-				swap(temp, itr_node);
+				temp = itr_node->prev;
+				swapping(&head, temp, itr_node);
 				swapped = 1;
 				print_list(head);
 				continue;
@@ -52,48 +51,44 @@ void cocktail_sort_list(listint_t **list)
 }
 
 /**
- * swap_next - swaps the current node with the next
- * @itr_node: current node
- */
-
-/**void swap_next(listint_t *itr_node)
-{
-	listint_t *temp;
-
-	temp = itr_node->next;
-
-	if (itr_node->prev != NULL)
-		itr_node->prev->next = temp;
-	if (temp->next != NULL)
-		temp->next->prev = itr_node;
-	temp->prev = itr_node->prev;
-	itr_node->next = temp->next;
-	itr_node->prev = temp;
-	temp->next = itr_node;
-}
-*/
-/**
- * swap_prev - swaps the current node with the prev node
+ * swapping - swap two nodes
  * @head: pointer to the head node
- * @itr_node: current node
- */
-
-/**void swap_prev(listint_t **head, listint_t *itr_node)
-{
-	listint_t *temp;
-
-	temp = itr_node->prev;
-
-	if (itr_node->next)
-		itr_node->next->prev = temp;
-	if (temp->prev)
-		temp->prev->next = itr_node;
-	temp->next = itr_node->next;
-	itr_node->next = temp;
-	itr_node->prev = temp->prev;
-	temp->prev = itr_node;
-
-	if (itr_node->prev == NULL)
-		*head = itr_node;
-}
+ * @node1: first node
+ * @node2: second node
+ * Return: void
 */
+void swapping(listint_t **head, listint_t *node1, listint_t *node2)
+{
+	/*edge cases 1- node1 is the head*/
+	if (node1->prev == NULL && node2->next != NULL)
+	{
+		node2->next->prev = node1;
+		node1->next = node2->next;
+		node2->prev = NULL;
+		*head = node2;
+	}
+	/*edge case 2- node2 is the tail*/
+	else if (node2->next == NULL && node1->prev != NULL)
+	{
+		node1->prev->next = node2;
+		node2->prev = node1->prev;
+		node1->next = NULL;
+	}
+	/*normal case*/
+	else if (node1->prev != NULL && node2->next != NULL)
+	{
+		node1->prev->next = node2;
+		node2->next->prev = node1;
+		node1->next = node2->next;
+		node2->prev = node1->prev;
+	}
+	else
+	{
+		node1->next = NULL;
+		node2->prev = NULL;
+		if (node2->prev == NULL)
+			*head = node2;
+	}
+	node1->prev = node2;
+	node2->next = node1;
+}
