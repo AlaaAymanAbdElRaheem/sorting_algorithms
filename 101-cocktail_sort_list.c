@@ -1,5 +1,5 @@
 #include "sort.h"
-
+ 
 /**
  * cocktail_sort_list - sorts a doubly linked list of integers
  * in ascending order using the Cocktail shaker sort algorithm
@@ -8,8 +8,8 @@
 
 void cocktail_sort_list(listint_t **list)
 {
-	int swap = 1;
-	listint_t *head, *itr_node;
+	int swapped = 1;
+	listint_t *head, *itr_node, *temp;
 
 	if (list == NULL || *list == NULL  || (*list)->next == NULL)
 		return;
@@ -17,29 +17,31 @@ void cocktail_sort_list(listint_t **list)
 	head = *list;
 	itr_node = *list;
 
-	while (swap)
+	while (swapped)
 	{
-		swap = 0;
+		swapped = 0;
 		while (itr_node->next != NULL)
 		{
 			if (itr_node->n > itr_node->next->n)
 			{
-				swap_next(itr_node);
-				swap = 1;
+			  temp = itr_node->next;
+			  swap(itr_node, temp);
+				swapped = 1;
 				print_list(head);
 				continue;
 			}
 			itr_node = itr_node->next;
 		}
-		if (swap == 0)
+		if (swapped == 0)
 			break;
-		swap = 0;
+		swapped = 0;
 		while (itr_node->prev != NULL)
 		{
 			if (itr_node->n < itr_node->prev->n)
 			{
-				swap_prev(&head, itr_node);
-				swap = 1;
+			  temp = itr_node->prev;
+				swap(temp, itr_node);
+				swapped = 1;
 				print_list(head);
 				continue;
 			}
@@ -54,7 +56,7 @@ void cocktail_sort_list(listint_t **list)
  * @itr_node: current node
  */
 
-void swap_next(listint_t *itr_node)
+/**void swap_next(listint_t *itr_node)
 {
 	listint_t *temp;
 
@@ -69,14 +71,14 @@ void swap_next(listint_t *itr_node)
 	itr_node->prev = temp;
 	temp->next = itr_node;
 }
-
+*/
 /**
  * swap_prev - swaps the current node with the prev node
  * @head: pointer to the head node
  * @itr_node: current node
  */
 
-void swap_prev(listint_t **head, listint_t *itr_node)
+/**void swap_prev(listint_t **head, listint_t *itr_node)
 {
 	listint_t *temp;
 
@@ -94,3 +96,4 @@ void swap_prev(listint_t **head, listint_t *itr_node)
 	if (itr_node->prev == NULL)
 		*head = itr_node;
 }
+*/
