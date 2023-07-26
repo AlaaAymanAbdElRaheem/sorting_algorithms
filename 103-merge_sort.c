@@ -46,12 +46,15 @@ void divide(int *array, int *tmp, int low, int high)
 {
 	int mid;
 
-	if (low >= high)
-		return;
-	mid = low + (high - low) / 2;
-	divide(array, tmp, low, mid);
-	divide(array, tmp, mid + 1, high);
-	merge(array, tmp, low, mid, high);
+	mid = (low + high) / 2;
+	if ((low + high) % 2 == 0)
+		mid--;
+	if (mid >= low)
+	{
+		divide(array, tmp, low, mid);
+		divide(array, tmp, mid + 1, high);
+		merge(array, tmp, low, mid, high);
+	}
 }
 /**
  * merge_sort - sorts an array of integers in ascending order using the
