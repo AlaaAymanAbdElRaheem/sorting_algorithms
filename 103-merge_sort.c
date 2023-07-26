@@ -1,29 +1,5 @@
 #include "sort.h"
 /**
- * _calloc - allocates memory for an array, using malloc,
- * and initializes it to zero
- * @size: size of array
- * @elem_size: size of each element
- * Return: pointer to allocated memory
-*/
-void *_calloc(unsigned int size, unsigned int elem_size)
-{
-	char *ptr;
-	unsigned int i;
-
-	if (size == 0)
-		return (NULL);
-
-	ptr = malloc(size * elem_size);
-	if (ptr == NULL)
-		return (NULL);
-
-	for (i = 0; i < size; i++)
-		ptr[i] = 0;
-
-	return (ptr);
-}
-/**
  * merge - merges the divided array
  * @array: array of integers
  * @tmp: temporary array
@@ -89,7 +65,10 @@ void merge_sort(int *array, size_t size)
 
 	if (array == NULL || size < 2)
 		return;
-	tmp = _calloc(size, sizeof(int));
+	tmp = malloc(sizeof(int) * size);
+	if (tmp == NULL)
+		return;
+
 	divide(array, tmp, 0, (int)size - 1);
 	free(tmp);
 }
