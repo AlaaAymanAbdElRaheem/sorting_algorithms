@@ -23,7 +23,7 @@ void print_list(const listint_t *list);
 void swap_next(listint_t *itr_node);
 void swap_prev(listint_t **head, listint_t *itr_node);
 void swap(listint_t *Node1, listint_t *Node2);
-void swapping(listint_t **head,listint_t *node1, listint_t *node2);
+void swapping(listint_t **head, listint_t *node1, listint_t *node2);
 void bubble_sort(int *array, size_t size);
 void insertion_sort_list(listint_t **list);
 void quick_sort(int *array, size_t size);
@@ -32,5 +32,6 @@ void shell_sort(int *array, size_t size);
 void cocktail_sort_list(listint_t **list);
 void counting_sort(int *array, size_t size);
 void merge_sort(int *array, size_t size);
-
+void heap_sort(int *array, size_t size);
+void heapify(int *array, int start_index, size_t stop, size_t size);
 #endif

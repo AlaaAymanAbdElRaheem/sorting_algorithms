@@ -2,3 +2,5 @@ compare.txt
 insertion
 *main.c
 test
+.vscode
+.gitignore
